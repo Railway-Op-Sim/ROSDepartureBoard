@@ -22,4 +22,12 @@ class Station {
         }
         return 0;
     }
+
+    getNextDepartures(time) {
+        for(let i = 0; i < this.departures.length; i++) {
+            if(this.departures[i].time.minutes > time.minutes) {
+                return [this.departures[i], this.departures[i+1], this.departures[i+2]]
+            }
+        }
+    }
 }

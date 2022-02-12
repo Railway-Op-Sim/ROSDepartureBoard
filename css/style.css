@@ -1,4 +1,19 @@
-h3,h4 {
+h3,h5 {
     display: inline;
     clear: none;
+}
+.board {
+    border: .4em orange solid;
+    background-color: black;
+    color: orange;
+    font-family: monospace;
+    padding: .4em;
+    width: 25em;
+    font-size: larger;
+}
+.board .deptime {
+    text-align: right;
+}
+.board .time {
+    text-align: center;
 }

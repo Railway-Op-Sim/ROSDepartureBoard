@@ -9,11 +9,11 @@
     <script src="js/time.js" charset="utf-8"></script>
     <script src="js/timetableParse.js" charset="utf-8"></script>
     <script src="js/main.js" charset="utf-8"></script>
-    <title>ROS Departure Boards</title>
+    <title>ROS Departure Board</title>
   </head>
   <body>
     <h2>Select the current log file</h2>
-    <input type="file" id="file-selector-log" accept=".txt">
+    <input type="file" id="file-selector-log" accept=".txt" disabled>
     <script>
         const logFileSelector = document.getElementById('file-selector-log');
         logFileSelector.addEventListener('change', (event) => {
@@ -28,5 +28,20 @@
           readTimetableFile(event);
         });
     </script>
+    <h2>Start Clock:</h2>
+    <button id="start">Start</button>
+    <hr />
+    <table class="board">
+      <tr class="departure" id="next">
+        <td class="dest">1 Test</td><td class="deptime">Due</td>
+      </tr>
+      <tr class="departure" id="following">
+        <td class="dest">2 Lorem</td><td class="deptime">2 mins</td>
+      </tr>
+      <tr class="departure" id="later">
+        <td class="dest">3 Ipsum</td><td class="deptime">8 mins</td>
+      </tr>
+      <tr><td colspan="2" class="time"><h3 id="main">00:00</h3><h5 id="seconds">:00</h5></td></tr>
+    </table>
   </body>
 </html>

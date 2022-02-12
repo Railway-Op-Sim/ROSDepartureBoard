@@ -25,4 +25,8 @@ class Timetable {
         }
         return null;
     }
+
+    getNextDepartures(station, time) {
+        return this.getStationIfExists(station).getNextDepartures(time);
+    }
 }

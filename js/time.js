@@ -6,7 +6,6 @@ class Time {
 
     toString() {
         var hours = parseInt(this.minutes / 60);
-        console.log(hours);
         var mins = this.minutes - (hours * 60);
         let hourString = hours.toLocaleString('en-US', {
             minimumIntegerDigits: 2
@@ -15,5 +14,9 @@ class Time {
             minimumIntegerDigits: 2
         });
         return hourString + ":" + minsString;
+    }
+
+    increment() {
+        this.minutes++;
     }
 }
