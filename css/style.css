@@ -2,7 +2,7 @@ h3,h5 {
     display: inline;
     clear: none;
 }
-.board {
+.simple-board {
     border: .4em orange solid;
     background-color: black;
     color: orange;
@@ -11,9 +11,13 @@ h3,h5 {
     width: 25em;
     font-size: larger;
 }
-.board .deptime {
-    text-align: right;
+.simple-board td.deptime, .simple-board td.dest {
+    padding: .2em;
 }
-.board .time {
+.simple-board .deptime {
+    text-align: right;
+    width: 5em;
+}
+.simple-board .time {
     text-align: center;
 }

@@ -23,10 +23,14 @@ class Station {
         return 0;
     }
 
-    getNextDepartures(time) {
+    getNextDepartures(time, number) {
         for(let i = 0; i < this.departures.length; i++) {
             if(this.departures[i].time.minutes > time.minutes) {
-                return [this.departures[i], this.departures[i+1], this.departures[i+2]]
+                var deps = [];
+                for(let j = 0; j < number; j++) {
+                    deps.push(this.departures[i + j])
+                }
+                return deps;
             }
         }
     }

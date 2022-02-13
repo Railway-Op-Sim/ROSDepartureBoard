@@ -26,8 +26,8 @@ class Timetable {
         return null;
     }
 
-    getNextDepartures(station, time) {
-        return this.getStationIfExists(station).getNextDepartures(time);
+    getNextDepartures(station, time, number) {
+        return this.getStationIfExists(station).getNextDepartures(time, number);
     }
 
     getStationNameList() {

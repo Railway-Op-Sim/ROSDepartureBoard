@@ -10,7 +10,7 @@ function startClock() {
     if(seconds == 59) {
       seconds = 0;
       currentTime.increment();
-      writeToBoard(timetable, currentTime);
+      writeToBoards(timetable, currentTime);
     } else {
       seconds++;
     }
@@ -56,13 +56,18 @@ function readTimetableFile(event) {
       stations = timetable.getStationNameList();
       writeStations();
       currentStation = stations[0];
-      writeToBoard(timetable, currentTime)
+      writeToBoards(timetable, currentTime)
   });
   reader.readAsText(ttbFile);
 }
 
-function writeToBoard(timetable, currentTime) {
-  var deps = timetable.getNextDepartures(currentStation, currentTime);
+function writeToBoards(timetable, currentTime) {
+  writeSimpleBoard(timetable, currentTime);
+  writeLongBoard(timetable, currentTime);
+}
+
+function writeSimpleBoard(timetable, currentTime) {
+  var deps = timetable.getNextDepartures(currentStation, currentTime, 3);
 
   $("#next .dest").text("1 " + deps[0].destination);
   var diff = deps[0].time.minutes - currentTime.minutes;
@@ -80,6 +85,16 @@ function writeToBoard(timetable, currentTime) {
   $("#later .deptime").text(text);
 
   $(".time #main").text(currentTime.toString());
+}
+
+function writeLongBoard(timetable, currentTime) {
+  var deps = timetable.getNextDepartures(currentStation, currentTime, 9);
+  for(let i = 0; i < 9; i++) {
+    $("#" + i + " .dest").text((i+1) + " " + deps[i].destination);
+    var diff = deps[i].time.minutes - currentTime.minutes;
+    var text = getText(diff);
+    $("#" + i + " .deptime").text(text);
+  }
 }
 
 function writeStations() {
@@ -104,6 +119,6 @@ $(document).ready(function(){
 
   $("#station").change(function() {
     currentStation = $(this).val();
-    writeToBoard(timetable, currentTime);
+    writeToBoards(timetable, currentTime);
   });
 });
