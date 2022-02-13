@@ -7,9 +7,12 @@ function parseTimetable(ttb, timetable) {
 function parseService(service, timetable) {
     var evts = service.split(",");
     var data = evts.shift();
-    var destination = data.split(";")[1].split(" to ")[1];
     
     for(let i = 0; i < evts.length; i++) {
+        if(data.startsWith("*")) {
+            break;
+        }
+        var destination = getDestination(data);
         var dep = parseEvent(evts[i], evts[i - 1], evts[i + 1], destination);
         if(dep != undefined) {
             timetable.addDeparture(dep[0], dep[1]);
@@ -42,5 +45,20 @@ function parseEvent(evt, prevEvt, nextEvt, dest) {
         } else {
             return [new Departure(new Time(eSplit[1]), dest), eSplit[2]];
         }
+    }
+}
+
+function getDestination(data) {
+    console.log(data);
+    var desc = data.split(";")[1];
+    desc = desc.replace(/\([\s\S]*?\)/g, "");
+    if(desc.split(" to ")[1] != undefined) {
+        return desc.split(" to ")[1];
+    } else if(desc.split(" - ")[1] != undefined) {
+        return desc.split(" - ")[1];
+    } else if(desc.split("-")[1] != undefined) {
+        return desc.split("-")[1];
+    } else {
+        return desc;
     }
 }
