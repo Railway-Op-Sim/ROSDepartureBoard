@@ -1,14 +1,16 @@
 var timetable;
 var currentTime;
+var stations;
 var ttbLoaded = false;
 var seconds = 0;
+var currentStation;
 
 function startClock() {
   function secondClock(){
     if(seconds == 59) {
       seconds = 0;
       currentTime.increment();
-      writeToBoard(timetable, "East Croydon", currentTime);
+      writeToBoard(timetable, currentTime);
     } else {
       seconds++;
     }
@@ -16,7 +18,7 @@ function startClock() {
       minimumIntegerDigits: 2
     });
     $(".time #seconds").text(":" + secondString);
-    setTimeout(secondClock, 25);
+    setTimeout(secondClock, 1000);
   }
   setTimeout(secondClock, 1000);
 }
@@ -45,15 +47,22 @@ function readTimetableFile(event) {
       startTime = timetableArray.shift();
       timetable = new Timetable(startTime);
       currentTime = new Time(startTime);
+
       parseTimetable(timetableArray, timetable);
       ttbLoaded = true;
-      writeToBoard(timetable, "East Croydon", currentTime)
+      $("#file-selector-ttb").prop("disabled", true);
+      $("#station").prop("disabled", false);
+      $("#start").prop("disabled", false);
+      stations = timetable.getStationNameList();
+      writeStations();
+      currentStation = stations[0];
+      writeToBoard(timetable, currentTime)
   });
   reader.readAsText(ttbFile);
 }
 
-function writeToBoard(timetable, station, currentTime) {
-  var deps = timetable.getNextDepartures(station, currentTime);
+function writeToBoard(timetable, currentTime) {
+  var deps = timetable.getNextDepartures(currentStation, currentTime);
 
   $("#next .dest").text("1 " + deps[0].destination);
   var diff = deps[0].time.minutes - currentTime.minutes;
@@ -73,6 +82,13 @@ function writeToBoard(timetable, station, currentTime) {
   $(".time #main").text(currentTime.toString());
 }
 
+function writeStations() {
+  for(let i = 0; i < stations.length; i++) {
+    var option = $("<option></option>").text(stations[i]);
+    $("#station").append(option);
+  }
+}
+
 function getText(diff) {
   if(diff == 1) {
     return "Due";
@@ -84,5 +100,10 @@ function getText(diff) {
 $(document).ready(function(){
   $("#start").click(function(){
     startClock();
+  });
+
+  $("#station").change(function() {
+    currentStation = $(this).val();
+    writeToBoard(timetable, currentTime);
   });
 });

@@ -29,4 +29,12 @@ class Timetable {
     getNextDepartures(station, time) {
         return this.getStationIfExists(station).getNextDepartures(time);
     }
+
+    getStationNameList() {
+        var stationNames = [];
+        for(let i = 0; i < this.stations.length; i++) {
+            stationNames.push(this.stations[i].name);
+        }
+        return stationNames;
+    }
 }
