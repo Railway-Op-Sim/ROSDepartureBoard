@@ -19,4 +19,10 @@ class Time {
     increment() {
         this.minutes++;
     }
+
+    addMinsGetNew(mins) {
+        var tm = new Time(this.toString());
+        tm.minutes += mins;
+        return tm;
+    }
 }
