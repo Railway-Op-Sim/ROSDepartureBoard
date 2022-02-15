@@ -7,28 +7,30 @@ function parseTimetable(ttb, timetable) {
 function parseService(service, timetable) {
     var evts = service.split(",");
     var data = evts.shift();
+    var stops = []
     
-    for(let i = 0; i < evts.length; i++) {
+    for(let i = evts.length; i > 0; i--) {
         if(data.startsWith("*") || data.startsWith(" ") || data == "") {
             break;
         }
         repeats = hasRepeat(evts);
         var destination = getDestination(data);
-        var dep = parseEvent(evts[i], evts[i - 1], evts[i + 1], destination);
+        var dep = parseEvent(evts[i], evts[i - 1], evts[i + 1], destination, [...stops]);
         if(dep != undefined) {
             timetable.addDeparture(dep[0], dep[1]);
             if(repeats[0] == true) {
                 tm = dep[0].time;
                 for(let j = 0; j < repeats[3]; j++) {
                     tm = tm.addMinsGetNew(parseInt(repeats[1]));
-                    timetable.addDeparture(new Departure(tm, dep[0].destination), dep[1]);
+                    timetable.addDeparture(new Departure(tm, dep[0].destination, [...stops]), dep[1]);
                 }
             }
+            stops.unshift(new Stop(dep[1], dep[0].time))
         }
     }
 }
 
-function parseEvent(evt, prevEvt, nextEvt, dest) {
+function parseEvent(evt, prevEvt, nextEvt, dest, stops) {
     if(prevEvt === undefined || nextEvt === undefined) {
         return undefined
     }
@@ -43,7 +45,7 @@ function parseEvent(evt, prevEvt, nextEvt, dest) {
                 if(eSplit[1] == dest) {
                     return undefined;
                 } else {
-                    return [new Departure(new Time(eSplit[0]), dest), eSplit[1]];
+                    return [new Departure(new Time(eSplit[0]), dest, stops), eSplit[1]];
                 }
             }
         }
@@ -52,7 +54,7 @@ function parseEvent(evt, prevEvt, nextEvt, dest) {
         eSplit[1] == "pas" || eSplit[1] == "jbo" || eSplit[1] == "fsp" || eSplit[1] == "rsp" || eSplit[1] == "Fjo" || eSplit[1] == "Frh-sh" || eSplit[1] == "F-nshs") {
             return undefined;
         } else {
-            return [new Departure(new Time(eSplit[1]), dest), eSplit[2]];
+            return [new Departure(new Time(eSplit[1]), dest, stops), eSplit[2]];
         }
     } else {
         return undefined;
@@ -60,7 +62,6 @@ function parseEvent(evt, prevEvt, nextEvt, dest) {
 }
 
 function getDestination(data) {
-    console.log(data)
     var desc = data.split(";")[1];
     desc = desc.replace(/\([\s\S]*?\)/g, "");
     if(desc.split(" to ")[1] != undefined) {

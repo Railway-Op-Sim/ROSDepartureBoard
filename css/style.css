@@ -21,3 +21,23 @@ h3,h5 {
 .simple-board .time {
     text-align: center;
 }
+.stop-board {
+    border: .4em orange solid;
+    background-color: black;
+    color: orange;
+    font-family: monospace;
+    padding: .4em;
+    width: 15em;
+    font-size: larger;
+    float: left;
+    margin: .5em;
+}
+.stop-board .dest {
+    font-weight: bold;
+}
+.stop-board .stop-time {
+    text-align: right;
+}
+.clearfix {
+    clear: both;
+}

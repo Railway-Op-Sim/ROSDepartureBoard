@@ -64,6 +64,7 @@ function readTimetableFile(event) {
 function writeToBoards(timetable, currentTime) {
   writeSimpleBoard(timetable, currentTime);
   writeLongBoard(timetable, currentTime);
+  writeStopBoard(timetable, currentTime)
 }
 
 function writeSimpleBoard(timetable, currentTime) {
@@ -90,10 +91,26 @@ function writeSimpleBoard(timetable, currentTime) {
 function writeLongBoard(timetable, currentTime) {
   var deps = timetable.getNextDepartures(currentStation, currentTime, 9);
   for(let i = 0; i < 9; i++) {
-    $("#" + i + " .dest").text((i+1) + " " + deps[i].destination);
+    $(".simple-board #" + i + " .dest").text((i+1) + " " + deps[i].destination);
     var diff = deps[i].time.minutes - currentTime.minutes;
     var text = getText(diff);
-    $("#" + i + " .deptime").text(text);
+    $(".simple-board #" + i + " .deptime").text(text);
+  }
+}
+
+function writeStopBoard(timetable, currentTime) {
+  var deps = timetable.getNextDepartures(currentStation, currentTime, 5);
+  for(let i = 0; i < 5; i++) {
+    $("#" + i + ".stop-board .time").text(deps[i].time.toString())
+    $("#" + i + ".stop-board .dest").text(deps[i].destination)
+    for(let j = 0; j < deps[i].stops.length; j++) {
+      $("#" + i + ".stop-board #" + j + ".stop").text(deps[i].stops[j].name).css("color","orange");
+      $("#" + i + ".stop-board #" + j + ".stop-time").text(deps[i].stops[j].time.toString()).css("color","orange");
+    }
+    for(let j = deps[i].stops.length; j < 8; j++) {
+      $("#" + i + ".stop-board #" + j + ".stop").text("a").css("color","black");
+      $("#" + i + ".stop-board #" + j + ".stop-time").text("a").css("color","black");
+    }
   }
 }
 

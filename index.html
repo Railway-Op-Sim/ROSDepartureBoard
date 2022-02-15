@@ -7,6 +7,7 @@
     <script src="js/timetable.js" charset="utf-8"></script>
     <script src="js/departure.js" charset="utf-8"></script>
     <script src="js/time.js" charset="utf-8"></script>
+    <script src="js/stop.js" charset="utf-8"></script>
     <script src="js/timetableParse.js" charset="utf-8"></script>
     <script src="js/main.js" charset="utf-8"></script>
     <title>ROS Departure Board</title>
@@ -46,6 +47,85 @@
       </tr>
       <tr><td colspan="2" class="time"><h3 id="main">00:00</h3><h5 id="seconds">:00</h5></td></tr>
     </table>
+    <br />
+    <div>
+      <table class="stop-board" id="0">
+        <tr><td class="time">00:00</td><td class="platform"></td></tr>
+        <tr><td colspan="2" class="dest">Test</td></tr>
+        <tr><td>Calling at: </td><td style="text-align: right;">1/1</td></tr>
+        <tr><td class="stop" id="0">Lorem</td><td class="stop-time" id="0">00:00</td></tr>
+        <tr><td class="stop" id="1">Lorem</td><td class="stop-time" id="1">00:00</td></tr>
+        <tr><td class="stop" id="2">Lorem</td><td class="stop-time" id="2">00:00</td></tr>
+        <tr><td class="stop" id="3">Lorem</td><td class="stop-time" id="3">00:00</td></tr>
+        <tr><td class="stop" id="4">Lorem</td><td class="stop-time" id="4">00:00</td></tr>
+        <tr><td class="stop" id="5">Lorem</td><td class="stop-time" id="5">00:00</td></tr>
+        <tr><td class="stop" id="6">Lorem</td><td class="stop-time" id="6">00:00</td></tr>
+        <tr><td class="stop" id="7">Lorem</td><td class="stop-time" id="7">00:00</td></tr>
+        <tr><td><br /></td></tr>
+        <tr><td colspan="2" class="status">On Time</td></tr>
+      </table>
+      <table class="stop-board" id="1">
+        <tr><td class="time">00:00</td><td class="platform"></td></tr>
+        <tr><td colspan="2" class="dest">Test</td></tr>
+        <tr><td>Calling at: </td><td style="text-align: right;">1/1</td></tr>
+        <tr><td class="stop" id="0">Lorem</td><td class="stop-time" id="0">00:00</td></tr>
+        <tr><td class="stop" id="1">Lorem</td><td class="stop-time" id="1">00:00</td></tr>
+        <tr><td class="stop" id="2">Lorem</td><td class="stop-time" id="2">00:00</td></tr>
+        <tr><td class="stop" id="3">Lorem</td><td class="stop-time" id="3">00:00</td></tr>
+        <tr><td class="stop" id="4">Lorem</td><td class="stop-time" id="4">00:00</td></tr>
+        <tr><td class="stop" id="5">Lorem</td><td class="stop-time" id="5">00:00</td></tr>
+        <tr><td class="stop" id="6">Lorem</td><td class="stop-time" id="6">00:00</td></tr>
+        <tr><td class="stop" id="7">Lorem</td><td class="stop-time" id="7">00:00</td></tr>
+        <tr><td><br /></td></tr>
+        <tr><td colspan="2" class="status">On Time</td></tr>
+      </table>
+      <table class="stop-board" id="2">
+        <tr><td class="time">00:00</td><td class="platform"></td></tr>
+        <tr><td colspan="2" class="dest">Test</td></tr>
+        <tr><td>Calling at: </td><td style="text-align: right;">1/1</td></tr>
+        <tr><td class="stop" id="0">Lorem</td><td class="stop-time" id="0">00:00</td></tr>
+        <tr><td class="stop" id="1">Lorem</td><td class="stop-time" id="1">00:00</td></tr>
+        <tr><td class="stop" id="2">Lorem</td><td class="stop-time" id="2">00:00</td></tr>
+        <tr><td class="stop" id="3">Lorem</td><td class="stop-time" id="3">00:00</td></tr>
+        <tr><td class="stop" id="4">Lorem</td><td class="stop-time" id="4">00:00</td></tr>
+        <tr><td class="stop" id="5">Lorem</td><td class="stop-time" id="5">00:00</td></tr>
+        <tr><td class="stop" id="6">Lorem</td><td class="stop-time" id="6">00:00</td></tr>
+        <tr><td class="stop" id="7">Lorem</td><td class="stop-time" id="7">00:00</td></tr>
+        <tr><td><br /></td></tr>
+        <tr><td colspan="2" class="status">On Time</td></tr>
+      </table>
+      <table class="stop-board" id="3">
+        <tr><td class="time">00:00</td><td class="platform"></td></tr>
+        <tr><td colspan="2" class="dest">Test</td></tr>
+        <tr><td>Calling at: </td><td style="text-align: right;">1/1</td></tr>
+        <tr><td class="stop" id="0">Lorem</td><td class="stop-time" id="0">00:00</td></tr>
+        <tr><td class="stop" id="1">Lorem</td><td class="stop-time" id="1">00:00</td></tr>
+        <tr><td class="stop" id="2">Lorem</td><td class="stop-time" id="2">00:00</td></tr>
+        <tr><td class="stop" id="3">Lorem</td><td class="stop-time" id="3">00:00</td></tr>
+        <tr><td class="stop" id="4">Lorem</td><td class="stop-time" id="4">00:00</td></tr>
+        <tr><td class="stop" id="5">Lorem</td><td class="stop-time" id="5">00:00</td></tr>
+        <tr><td class="stop" id="6">Lorem</td><td class="stop-time" id="6">00:00</td></tr>
+        <tr><td class="stop" id="7">Lorem</td><td class="stop-time" id="7">00:00</td></tr>
+        <tr><td><br /></td></tr>
+        <tr><td colspan="2" class="status">On Time</td></tr>
+      </table>
+      <table class="stop-board" id="4">
+        <tr><td class="time">00:00</td><td class="platform"></td></tr>
+        <tr><td colspan="2" class="dest">Test</td></tr>
+        <tr><td>Calling at: </td><td style="text-align: right;">1/1</td></tr>
+        <tr><td class="stop" id="0">Lorem</td><td class="stop-time" id="0">00:00</td></tr>
+        <tr><td class="stop" id="1">Lorem</td><td class="stop-time" id="1">00:00</td></tr>
+        <tr><td class="stop" id="2">Lorem</td><td class="stop-time" id="2">00:00</td></tr>
+        <tr><td class="stop" id="3">Lorem</td><td class="stop-time" id="3">00:00</td></tr>
+        <tr><td class="stop" id="4">Lorem</td><td class="stop-time" id="4">00:00</td></tr>
+        <tr><td class="stop" id="5">Lorem</td><td class="stop-time" id="5">00:00</td></tr>
+        <tr><td class="stop" id="6">Lorem</td><td class="stop-time" id="6">00:00</td></tr>
+        <tr><td class="stop" id="7">Lorem</td><td class="stop-time" id="7">00:00</td></tr>
+        <tr><td><br /></td></tr>
+        <tr><td colspan="2" class="status">On Time</td></tr>
+      </table>
+    </div>
+    <div class="clearfix"></div>
     <br />
     <table class="simple-board">
       <tr class="departure" id="0">
