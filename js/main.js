@@ -18,7 +18,7 @@ function startClock() {
       minimumIntegerDigits: 2
     });
     $(".time #seconds").text(":" + secondString);
-    setTimeout(secondClock, 50);
+    setTimeout(secondClock, 1000);
   }
   setTimeout(secondClock, 1000);
 }
