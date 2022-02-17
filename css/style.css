@@ -61,6 +61,7 @@ div.nse-board {
 }
 .nse .status {
     width: 25%;
+    color: yellow;
 }
 .nse .plat {
     width: 8%;
