@@ -18,7 +18,7 @@ function startClock() {
       minimumIntegerDigits: 2
     });
     $(".time #seconds").text(":" + secondString);
-    setTimeout(secondClock, 1000);
+    setTimeout(secondClock, 50);
   }
   setTimeout(secondClock, 1000);
 }
@@ -64,7 +64,8 @@ function readTimetableFile(event) {
 function writeToBoards(timetable, currentTime) {
   writeSimpleBoard(timetable, currentTime);
   writeLongBoard(timetable, currentTime);
-  writeStopBoard(timetable, currentTime)
+  writeStopBoard(timetable, currentTime);
+  writeNSEBoard(timetable, currentTime);
 }
 
 function writeSimpleBoard(timetable, currentTime) {
@@ -112,6 +113,15 @@ function writeStopBoard(timetable, currentTime) {
       $("#" + i + ".stop-board #" + j + ".stop-time").text("a").css("color","black");
     }
   }
+}
+
+function writeNSEBoard(timetable, currentTime) {
+  var deps = timetable.getNextDepartures(currentStation, currentTime, 6);
+  for(let i = 0; i < 6; i++) {
+    $(".nse #" + i + ".departure .deptime").text(deps[i].time.toString().replace(":", ""));
+    $(".nse #" + i + ".departure .dest").text(deps[i].destination);
+  }
+  $(".nse .time").text("~ Time Now " + currentTime.toString().replace(":", "") + " ~")
 }
 
 function writeStations() {

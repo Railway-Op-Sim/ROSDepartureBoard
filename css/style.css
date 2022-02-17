@@ -41,3 +41,40 @@ h3,h5 {
 .clearfix {
     clear: both;
 }
+
+div.nse-board {
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+.nse {
+    position: absolute;
+    z-index: 1;
+    left: 19%;
+    top: 48.5%;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 310px;
+}
+.nse .deptime {
+    width: 18%;
+}
+.nse .status {
+    width: 25%;
+}
+.nse .plat {
+    width: 8%;
+}
+.nse .dest {
+    display: inline-block;
+    width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.nse .time {
+    text-align: center;
+}
+.half-row {
+    height: 7px;
+}
